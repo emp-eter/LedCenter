@@ -137,7 +137,7 @@ function App() {
                 </div>
               </div>
               <img
-                    src="./public/images/ledfal.png"
+                    src="./images/ledfal.png"
                     alt="LED fal installáció"
                     className="bg-transparent object-cover"
                     loading="lazy"
