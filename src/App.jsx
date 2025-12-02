@@ -439,7 +439,7 @@ function App() {
 
                 <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4 md:p-5 space-y-3">
                   <div>
-                    <p className="text-xs font-semibold text-sky-300 mb-1">Sales</p>
+                    <p className="text-xs font-semibold text-sky-300 mb-1">Értékesítés</p>
                     <p className="text-sm md:text-base">
                       Tel.:{' '}
                       <a href="tel:+36202806363" className="text-sky-300 hover:underline">
