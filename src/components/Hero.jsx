@@ -1,3 +1,7 @@
+const featureTags = ['Beltérre', 'Kültérre', 'Rendezvényre', 'TV / Mozi', 'Konferencia', 'Világítástechnika']
+
+const heroImage = `${import.meta.env.BASE_URL}images/ledfal.png`
+
 const Hero = ({ sections }) => (
   <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
     <div className="pointer-events-none absolute inset-0 opacity-30" aria-hidden>
@@ -18,22 +22,19 @@ const Hero = ({ sections }) => (
           </h1>
           <p className="text-sm md:text-base text-slate-200/80 max-w-xl">
             Beltéri és kültéri LED kijelzők, rendezvény- és sportmegoldások, TV/mozi és konferencia
-            rendszerek, valamint professzionális világítástechnika – egy kézből, teljes körű
-            támogatással.
+            rendszerek, valamint professzionális világítástechnika – egy kézből, teljes körű támogatással.
           </p>
         </div>
 
         <div className="grid grid-cols-2 md:flex md:flex-wrap gap-2.5 md:gap-3 text-[11px] md:text-xs">
-          {['Beltérre', 'Kültérre', 'Rendezvényre', 'TV / Mozi', 'Konferencia', 'Világítástechnika'].map(
-            (item) => (
-              <span
-                key={item}
-                className="inline-flex items-center rounded-full bg-slate-900/80 border border-slate-700/80 px-3 py-1"
-              >
-                {item}
-              </span>
-            ),
-          )}
+          {featureTags.map(item => (
+            <span
+              key={item}
+              className="inline-flex items-center rounded-full bg-slate-900/80 border border-slate-700/80 px-3 py-1"
+            >
+              {item}
+            </span>
+          ))}
         </div>
 
         <div className="flex flex-wrap gap-3 items-center">
@@ -69,17 +70,16 @@ const Hero = ({ sections }) => (
 
       <div className="relative">
         <div className="absolute -inset-6 rounded-3xl bg-white/10 blur-3xl" aria-hidden />
-        <div className="relative rounded-3xl border border-slate-700/80 bg-slate-900/80 shadow-2xl overflow-hidden">
-          <div className="absolute -bottom-8 -left-8 h-40 w-40 rounded-full bg-white/30 blur-3xl" aria-hidden />
-          <div className="relative">
-            <img
-              src="https://visualsupport.pl/wp-content/uploads/2022/11/Visualsupport_UpadIII_P3.9_010_main.jpg"
-              alt="LED fal installáció"
-              className="w-full h-full max-h-[320px] md:max-h-[380px] object-cover"
-              loading="lazy"
-            />
-          </div>
+        <div className="relative rounded-3xl bg-transparent shadow-2xl overflow-hidden">
+          <div className="absolute -bottom-8 -left-8 h-40 w-40 rounded-full bg-transparent blur-3xl" aria-hidden />
+          <div className="relative" />
         </div>
+        <img
+          src={heroImage}
+          alt="LED fal installáció"
+          className="bg-transparent object-cover"
+          loading="lazy"
+        />
       </div>
     </div>
   </section>

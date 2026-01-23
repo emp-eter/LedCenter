@@ -1,32 +1,57 @@
-const ProductCard = ({ title, description, image, accent }) => (
-  <div className="grid md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-7 md:gap-10 items-center">
-    <div className="space-y-3">
-      <h3 className="text-xl md:text-2xl font-semibold">{title}</h3>
-      <p className="text-sm md:text-base text-slate-200/90 leading-relaxed">{description}</p>
-    </div>
-    <div className="relative">
-      <div className={`absolute -inset-4 rounded-3xl ${accent} blur-3xl`} aria-hidden />
-      <div className="relative rounded-3xl border border-slate-800 bg-slate-900/80 p-5 flex items-center justify-center">
-        <img src={image} alt={title} className="max-h-56 w-auto object-contain" loading="lazy" />
-      </div>
-    </div>
-  </div>
-)
+const base = import.meta.env.BASE_URL || '/'
 
-const ProductCardAlt = ({ title, description, image, accent }) => (
-  <div className="grid md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-7 md:gap-10 items-center">
-    <div className="relative order-2 md:order-1">
-      <div className={`absolute -inset-4 rounded-3xl ${accent} blur-3xl`} aria-hidden />
-      <div className="relative rounded-3xl border border-slate-800 bg-slate-900/80 p-5 flex items-center justify-center">
-        <img src={image} alt={title} className="max-h-56 w-auto object-contain" loading="lazy" />
-      </div>
-    </div>
-    <div className="space-y-3 order-1 md:order-2">
-      <h3 className="text-xl md:text-2xl font-semibold">{title}</h3>
-      <p className="text-sm md:text-base text-slate-200/90 leading-relaxed">{description}</p>
-    </div>
-  </div>
-)
+const productSections = [
+  {
+    title: 'Beltéri LED kijelzők',
+    description:
+      'Ma már beltéren is fontos, hogy kitűnjünk a reklámzajból, ezért célszerű látványos felületeket elhelyezni. A reklám felhasználáson túl konferenciák, vezérlőegységek és munkaállomások részeként is tökéletes választás.',
+    image: `${base}images/lilostich.jpg`,
+    alt: 'Beltéri LED kijelző',
+    glowClass: 'bg-sky-400/35',
+    shadow: '0 0 70px 25px rgba(56,189,248,0.30)',
+    reverse: false,
+  },
+  {
+    title: 'Kültéri LED kijelzők',
+    description:
+      'A közlekedési termináloktól a hirdetőtáblákig kültéri kereskedelmi LED kijelzőink elég erőteljesek és látványosak ahhoz, hogy minden márka üzenetét jól láthatóvá tegyék.',
+    image: null,
+    alt: 'Kültéri LED kijelző',
+    glowClass: 'bg-emerald-400/30',
+    shadow: '0 0 70px 22px rgba(52,211,153,0.28)',
+    reverse: true,
+  },
+  {
+    title: 'Rendezvényre (rental vagy saját használatra)',
+    description:
+      'Kiállításoktól a koncertekig több LED-megoldást is kínálunk, amelyek gyors telepítést, stabil teljesítményt és kreatív megjelenítést biztosítanak a lenyűgöző show-khoz.',
+    image: `${base}images/comicon.jpg`,
+    alt: 'Rendezvény LED panel',
+    glowClass: 'bg-fuchsia-400/30',
+    shadow: '0 0 70px 22px rgba(232,121,249,0.30)',
+    reverse: false,
+  },
+  {
+    title: 'Sport',
+    description:
+      'Világbajnokságoktól a klubversenyekig fejlett LED megoldásokat kínálunk mindenféle sportlétesítmény számára, élőképpel, eredményekkel és üzenetekkel.',
+    image: `${base}images/sport.png`,
+    alt: 'Sport LED kijelző',
+    glowClass: 'bg-amber-400/30',
+    shadow: '0 0 70px 22px rgba(251,191,36,0.32)',
+    reverse: true,
+  },
+  {
+    title: 'Világítástechnika',
+    description:
+      'A professzionális világítás területén elkötelezettek vagyunk a kreatív, magas minőségű és vizuálisan kényelmes megoldások mellett – ipari és kültéri helyszíneken egyaránt.',
+    image: `${base}images/vilagitastec.png`,
+    alt: 'LED világítástechnika',
+    glowClass: 'bg-indigo-400/30',
+    shadow: '0 0 70px 22px rgba(129,140,248,0.28)',
+    reverse: false,
+  },
+]
 
 const Products = ({ id }) => (
   <section id={id} className="bg-slate-950 border-t border-slate-900/80">
@@ -36,47 +61,58 @@ const Products = ({ id }) => (
           Széles termékválaszték minden igényre
         </h2>
         <p className="text-sm md:text-base text-slate-200/90">
-          Széles választékban kínálunk LED kijelzőket, amelyek kivételes képet és kiváló
-          termékminőséget biztosítanak, hogy vállalkozása új szintre emelhesse termékeit vagy
-          szolgáltatásait.
+          Széles választékban kínálunk LED kijelzőket, amelyek kivételes képet és kiváló termékminőséget biztosítanak,
+          hogy vállalkozása új szintre emelhesse termékeit vagy szolgáltatásait.
         </p>
       </div>
 
       <div className="grid gap-8 md:gap-10">
-        <ProductCard
-          title="Beltéri LED kijelzők"
-          description="Ma már beltéren is fontos, hogy kitűnjünk a reklámzajból, és a mi üzenetünk legyen a legfeltűnőbb, ezért ott is célszerű látványos felületeket elhelyezni. Ebben vagyunk partnerek – bármilyen üzletről is legyen szó. A reklám felhasználáson túl konferenciák, vezérlőegységek és más munkaállomások részeként is tökéletes választás."
-          image="https://imgcdn.unilumin.com/media/upload/products/Umate%20LM/Umate-LM_F.png"
-          accent="bg-sky-500/20"
-        />
+        {productSections.map(product => {
+          const gridTemplate = product.reverse
+            ? 'md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]'
+            : 'md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]'
+          const imageOrder = product.reverse ? 'order-2 md:order-1' : ''
+          const textOrder = product.reverse ? 'order-1 md:order-2' : ''
 
-        <ProductCardAlt
-          title="Kültéri LED kijelzők"
-          description="A közlekedési termináloktól a hirdetőtáblákon át a bevásárlóközpontokig kültéri kereskedelmi LED kijelzőink mindig elég erőteljesek és látványosak ahhoz, hogy tökéletesen bemutassák az összes testreszabott tartalmat, és minden márka üzenetét jól láthatóvá tegyék."
-          image="https://imgcdn.unilumin.com/media/upload/products/Umate%20SF/new/Umate-SF_f600.png"
-          accent="bg-emerald-500/15"
-        />
-
-        <ProductCard
-          title="Rendezvényre (rental vagy saját használatra)"
-          description="A kiállításoktól a koncerteken át az élő közvetítésekig több LED-megoldást is kínálunk, amelyek gyors telepítést, stabil teljesítményt és kreatív megjelenítést biztosítanak a lenyűgöző show-műsorok létrehozásához."
-          image="https://imgcdn.unilumin.com/media/upload/products/ugm2/600x600.png"
-          accent="bg-fuchsia-500/20"
-        />
-
-        <ProductCardAlt
-          title="Sport"
-          description="A világbajnokságoktól a klubversenyekig a LED Center Sport részlege fejlett LED megoldásokat kínál mindenféle sportlétesítmény számára, izgalmas vizuális elemeket hozva a sportrajongóknak. Lehetővé teszi élőkép, eredmények és egyéb üzenetek közvetítését."
-          image="https://imgcdn.unilumin.com/media/upload/products/UsportX/UsportX_F.png"
-          accent="bg-amber-500/20"
-        />
-
-        <ProductCard
-          title="Világítástechnika"
-          description="A professzionális világítás területén a LED Center elkötelezett amellett, hogy minden lépését kreativitással, kiváló minőségű és vizuálisan kényelmes megoldásokkal világítsa meg – legyen szó ipari vagy kültéri helyszínekről."
-          image="https://imgcdn.unilumin.com/media/upload/products/lighting-new/Marlin(1).png"
-          accent="bg-indigo-500/20"
-        />
+          return (
+            <div
+              key={product.title}
+              className={`grid ${gridTemplate} gap-7 md:gap-10 items-center`}
+            >
+              <div className={`space-y-3 ${textOrder}`}>
+                <h3 className="text-xl md:text-2xl font-semibold">{product.title}</h3>
+                <p className="text-sm md:text-base text-slate-200/90 leading-relaxed">
+                  {product.description}
+                </p>
+              </div>
+              <div className={`relative ${imageOrder}`}>
+                {product.image ? (
+                  <>
+                    <div
+                      className={`absolute -inset-10 rounded-3xl ${product.glowClass} blur-[48px] opacity-100 pointer-events-none mix-blend-screen -z-10`}
+                      aria-hidden
+                    />
+                    <div
+                      className="relative rounded-3xl overflow-hidden ring-1 ring-slate-800/60 bg-slate-950/50 backdrop-blur-md aspect-[4/3]"
+                      style={{ boxShadow: product.shadow }}
+                    >
+                      <img
+                        src={product.image}
+                        alt={product.alt}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                  </>
+                ) : (
+                  <div className="relative rounded-3xl border border-dashed border-slate-800/60 bg-slate-900/30 aspect-[4/3] flex items-center justify-center text-slate-500 text-sm">
+                    Kép szükséges
+                  </div>
+                )}
+              </div>
+            </div>
+          )
+        })}
       </div>
     </div>
   </section>

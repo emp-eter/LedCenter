@@ -9,8 +9,8 @@ const Intro = ({ id }) => (
           felületekről vagy rendezvények látványelemeiről.
         </p>
         <p className="text-sm md:text-base text-slate-200/90 leading-relaxed">
-          A LED Center célja, hogy segítsük partnereinket az üzenetük eljuttatásában a fogyasztók felé
-          – színházi, mozi, sportfelületek, illetve ruházati és egyéb kereskedelmi egységek esetén is.
+          A LED-fal Center célja, hogy segítsük partnereinket az üzenetük eljuttatásában a fogyasztók felé
+          - színházi, mozi, sportfelületek, illetve ruházati és egyéb kereskedelmi egységek esetén is.
           A legújabb technológiáknak köszönhetően szinte bármilyen felületre telepíthetünk LED
           kijelzőt: sík vagy ívelt falra, oszlopra, sőt akár átlátszó kirakatra is.
         </p>
@@ -27,16 +27,8 @@ const Intro = ({ id }) => (
         </p>
       </div>
 
-      <div className="relative">
-        <div className="absolute -inset-6 rounded-3xl bg-sky-500/15 blur-3xl" aria-hidden />
-        <div className="relative rounded-3xl overflow-hidden border border-slate-800 bg-slate-900/80 shadow-2xl">
-          <img
-            src="https://imgcdn.unilumin.com/upload2023/led-video-wall.jpg"
-            alt="LED video fal"
-            className="w-full h-full max-h-[360px] object-cover"
-            loading="lazy"
-          />
-        </div>
+      <div className="relative rounded-3xl border border-dashed border-slate-800 bg-slate-900/20 shadow-2xl flex items-center justify-center min-h-[280px]">
+        <p className="text-slate-500 text-sm">Kép szükséges</p>
       </div>
     </div>
   </section>

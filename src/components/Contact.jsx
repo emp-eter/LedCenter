@@ -5,8 +5,7 @@ const Contact = ({ id }) => (
         <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-1">Lépjen kapcsolatba velünk</h2>
         <p className="text-sm md:text-base text-slate-200/90 max-w-xl">
           Amennyiben felkeltettük érdeklődését, keressen minket bizalommal az alábbi elérhetőségek
-          egyikén! Segítünk a megfelelő LED megoldás kiválasztásában az első ötlettől a
-          megvalósításig.
+          egyikén! Segítünk a megfelelő LED megoldás kiválasztásában az első ötlettől a megvalósításig.
         </p>
 
         <div className="grid sm:grid-cols-2 gap-5 md:gap-6 mt-4">
@@ -35,7 +34,7 @@ const Contact = ({ id }) => (
 
           <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4 md:p-5 space-y-3">
             <div>
-              <p className="text-xs font-semibold text-sky-300 mb-1">Sales</p>
+              <p className="text-xs font-semibold text-sky-300 mb-1">Értékesítés</p>
               <p className="text-sm md:text-base">
                 Tel.:{' '}
                 <a href="tel:+36202806363" className="text-sky-300 hover:underline">
@@ -47,17 +46,12 @@ const Contact = ({ id }) => (
               <p className="text-xs font-semibold text-sky-300 mb-1">Szervíz, műszaki megoldások</p>
               <p className="text-sm md:text-base">
                 Tel.:{' '}
-                <a href="tel:+36306666666" className="text-sky-300 hover:underline">
-                  +36 30 666 6666
+                <a href="tel: +36306368189" className="text-sky-300 hover:underline">
+                   +36 30 636 81 89
                 </a>
               </p>
             </div>
           </div>
-        </div>
-
-        <div className="mt-4 rounded-2xl border border-slate-800 bg-slate-900/80 p-4 md:p-5">
-          <p className="text-sm md:text-base font-medium mb-1">Üdvözlettel:</p>
-          <p className="text-sm md:text-base">Cinema Center Kft. csapata</p>
         </div>
 
         <p className="text-[10px] md:text-[11px] text-slate-500 text-center md:text-left mt-6">
@@ -65,16 +59,8 @@ const Contact = ({ id }) => (
         </p>
       </div>
 
-      <div className="relative mt-2 lg:mt-0">
-        <div className="absolute -inset-6 rounded-3xl bg-sky-500/25 blur-3xl" aria-hidden />
-        <div className="relative rounded-3xl overflow-hidden border border-slate-800 bg-slate-900/80 shadow-2xl">
-          <img
-            src="https://imgcdn.unilumin.com/upload2023/outdoor-led-display-development-trends.jpg"
-            alt="LED kijelzők kültéri alkalmazása"
-            className="w-full h-full max-h-[380px] object-cover"
-            loading="lazy"
-          />
-        </div>
+      <div className="relative mt-2 lg:mt-0 rounded-3xl border border-dashed border-slate-800 bg-slate-900/20 shadow-2xl flex items-center justify-center min-h-[280px]">
+        <p className="text-slate-500 text-sm">Kép szükséges</p>
       </div>
     </div>
   </section>
