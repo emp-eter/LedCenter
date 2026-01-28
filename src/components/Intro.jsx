@@ -1,3 +1,5 @@
+﻿const base = import.meta.env.BASE_URL || '/'
+
 const Intro = ({ id }) => (
   <section id={id} className="bg-slate-950 border-t border-slate-900/80">
     <div className="max-w-6xl mx-auto px-4 py-10 md:py-14 grid md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] gap-10 md:gap-12 items-center">
@@ -16,7 +18,7 @@ const Intro = ({ id }) => (
         </p>
         <p className="text-sm md:text-base text-slate-200/90 leading-relaxed">
           A sokrétű felhasználás és technikai megoldások miatt úgy véljük, a LED a jövő, hiszen ennek
-          a fényforrásnak van a legnagyobb fényereje, így világos, szabadtéri területeken is kiválóan
+          a fényforrásnak van a legnagyobb fénye, így világos, szabadtéri területeken is kiválóan
           alkalmazható. A színek élénksége tovább növeli a vizuális hatást, látványosabbá téve a
           megjelenést a print anyagokhoz, TV-hez vagy vetített képekhez képest.
         </p>
@@ -27,11 +29,17 @@ const Intro = ({ id }) => (
         </p>
       </div>
 
-      <div className="relative rounded-3xl border border-dashed border-slate-800 bg-slate-900/20 shadow-2xl flex items-center justify-center min-h-[280px]">
-        <p className="text-slate-500 text-sm">Kép szükséges</p>
+      <div className="relative rounded-3xl overflow-hidden border border-transparent min-h-[360px] md:min-h-[420px]">
+        <img
+          src={`${base}images/bemutatkozas.webp`}
+          alt="Bemutatkozás"
+          className="w-full h-full object-cover"
+          loading="lazy"
+        />
       </div>
     </div>
   </section>
 )
 
 export default Intro
+

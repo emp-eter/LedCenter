@@ -1,4 +1,4 @@
-const featureTags = ['Beltérre', 'Kültérre', 'Rendezvényre', 'TV / Mozi', 'Konferencia', 'Világítástechnika']
+﻿const featureTags = ["Beltérre", "Kültérre", "Rendezvényre", "TV / Mozi", "Konferencia", "Világítástechnika"]
 
 const heroImage = `${import.meta.env.BASE_URL}images/ledfal.png`
 

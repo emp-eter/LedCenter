@@ -1,4 +1,4 @@
-const base = import.meta.env.BASE_URL || '/'
+﻿const base = import.meta.env.BASE_URL || '/'
 
 const productSections = [
   {
@@ -15,7 +15,7 @@ const productSections = [
     title: 'Kültéri LED kijelzők',
     description:
       'A közlekedési termináloktól a hirdetőtáblákig kültéri kereskedelmi LED kijelzőink elég erőteljesek és látványosak ahhoz, hogy minden márka üzenetét jól láthatóvá tegyék.',
-    image: null,
+    image: `${base}images/outdoor.webp`,
     alt: 'Kültéri LED kijelző',
     glowClass: 'bg-emerald-400/30',
     shadow: '0 0 70px 22px rgba(52,211,153,0.28)',
@@ -40,6 +40,7 @@ const productSections = [
     glowClass: 'bg-amber-400/30',
     shadow: '0 0 70px 22px rgba(251,191,36,0.32)',
     reverse: true,
+    contain: true,
   },
   {
     title: 'Világítástechnika',
@@ -73,6 +74,8 @@ const Products = ({ id }) => (
             : 'md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]'
           const imageOrder = product.reverse ? 'order-2 md:order-1' : ''
           const textOrder = product.reverse ? 'order-1 md:order-2' : ''
+          const containerPadding = product.contain ? 'p-4' : ''
+          const imageFitClass = product.contain ? 'object-contain' : 'object-cover'
 
           return (
             <div
@@ -93,13 +96,13 @@ const Products = ({ id }) => (
                       aria-hidden
                     />
                     <div
-                      className="relative rounded-3xl overflow-hidden ring-1 ring-slate-800/60 bg-slate-950/50 backdrop-blur-md aspect-[4/3]"
+                      className={`relative rounded-3xl overflow-hidden ring-1 ring-slate-800/60 bg-slate-950/50 backdrop-blur-md aspect-[4/3] ${containerPadding}`}
                       style={{ boxShadow: product.shadow }}
                     >
                       <img
                         src={product.image}
                         alt={product.alt}
-                        className="w-full h-full object-cover"
+                        className={`w-full h-full ${imageFitClass}`}
                         loading="lazy"
                       />
                     </div>
@@ -119,3 +122,4 @@ const Products = ({ id }) => (
 )
 
 export default Products
+
