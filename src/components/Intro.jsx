@@ -29,7 +29,10 @@ const Intro = ({ id }) => (
         </p>
       </div>
 
-      <div className="relative rounded-3xl overflow-hidden border border-transparent min-h-[360px] md:min-h-[420px]">
+      <div
+        className="relative rounded-3xl overflow-hidden border border-transparent min-h-[360px] md:min-h-[420px]"
+        data-image="intro"
+      >
         <img
           src={`${base}images/bemutatkozas.webp`}
           alt="Bemutatkozás"

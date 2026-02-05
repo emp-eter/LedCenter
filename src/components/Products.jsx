@@ -74,8 +74,16 @@ const Products = ({ id }) => (
             : 'md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]'
           const imageOrder = product.reverse ? 'order-2 md:order-1' : ''
           const textOrder = product.reverse ? 'order-1 md:order-2' : ''
-          const containerPadding = product.contain ? 'p-4' : ''
+          const noDarkFrame = ['Kültéri LED kijelzők', 'Sport'].includes(product.title)
+          const containerPadding = product.contain ? (noDarkFrame ? '' : 'p-4') : ''
           const imageFitClass = product.contain ? 'object-contain' : 'object-cover'
+          const ringClass = noDarkFrame ? '' : 'ring-1 ring-slate-800/60'
+          const bgClass = noDarkFrame ? 'bg-transparent' : 'bg-slate-950/50 backdrop-blur-md'
+          const boxShadow = noDarkFrame ? 'none' : product.shadow
+          const glowBlend =
+            noDarkFrame ? 'mix-blend-screen blur-[80px] opacity-90' : 'mix-blend-screen blur-[48px] opacity-100'
+          const glowZ = noDarkFrame ? 'z-0' : '-z-10'
+          const glowClassName = `${product.glowClass} ${glowBlend} ${glowZ}`
 
           return (
             <div
@@ -92,12 +100,13 @@ const Products = ({ id }) => (
                 {product.image ? (
                   <>
                     <div
-                      className={`absolute -inset-10 rounded-3xl ${product.glowClass} blur-[48px] opacity-100 pointer-events-none mix-blend-screen -z-10`}
+                      className={`absolute -inset-12 rounded-3xl ${glowClassName} pointer-events-none`}
                       aria-hidden
                     />
                     <div
-                      className={`relative rounded-3xl overflow-hidden ring-1 ring-slate-800/60 bg-slate-950/50 backdrop-blur-md aspect-[4/3] ${containerPadding}`}
-                      style={{ boxShadow: product.shadow }}
+                      className={`relative rounded-3xl overflow-hidden ${ringClass} ${bgClass} aspect-[4/3] ${containerPadding}`}
+                      style={{ boxShadow }}
+                      data-image={product.title}
                     >
                       <img
                         src={product.image}

@@ -68,7 +68,7 @@ const Hero = ({ sections }) => (
         </div>
       </div>
 
-      <div className="relative">
+      <div className="relative" data-image="hero">
         <div className="absolute -inset-6 rounded-3xl bg-white/10 blur-3xl" aria-hidden />
         <div className="relative rounded-3xl bg-transparent shadow-2xl overflow-hidden">
           <div className="absolute -bottom-8 -left-8 h-40 w-40 rounded-full bg-transparent blur-3xl" aria-hidden />

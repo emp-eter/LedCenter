@@ -61,7 +61,10 @@ const Contact = ({ id }) => (
         </p>
       </div>
 
-      <div className="relative mt-2 lg:mt-0 rounded-3xl overflow-hidden border border-transparent min-h-[320px] md:min-h-[380px]">
+      <div
+        className="relative mt-2 lg:mt-0 rounded-3xl overflow-hidden border border-transparent min-h-[320px] md:min-h-[380px]"
+        data-image="contact"
+      >
         <img
           src={`${base}images/kapcsolat.webp`}
           alt="Kapcsolat"
