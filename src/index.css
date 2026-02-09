@@ -4,6 +4,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Glow state classes for intersection observer */
+.glow-layer {
+  opacity: 0.6;
+  filter: blur(32px);
+  transition: opacity 0.4s ease, filter 0.4s ease;
+}
+
+.glow-layer.glow-active {
+  opacity: 1;
+  filter: blur(48px);
+}
+
 html {
   scroll-behavior: smooth;
 }

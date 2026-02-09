@@ -81,9 +81,9 @@ const Products = ({ id }) => (
           const bgClass = noDarkFrame ? 'bg-transparent' : 'bg-slate-950/50 backdrop-blur-md'
           const boxShadow = noDarkFrame ? 'none' : product.shadow
           const glowBlend =
-            noDarkFrame ? 'mix-blend-screen blur-[80px] opacity-90' : 'mix-blend-screen blur-[48px] opacity-100'
+            noDarkFrame ? 'mix-blend-screen' : 'mix-blend-screen'
           const glowZ = noDarkFrame ? 'z-0' : '-z-10'
-          const glowClassName = `${product.glowClass} ${glowBlend} ${glowZ}`
+          const glowClassName = `${product.glowClass} ${glowBlend} ${glowZ} glow-layer`
 
           return (
             <div
@@ -100,7 +100,7 @@ const Products = ({ id }) => (
                 {product.image ? (
                   <>
                     <div
-                      className={`absolute -inset-12 rounded-3xl ${glowClassName} pointer-events-none`}
+                      className={`absolute -inset-12 rounded-3xl ${glowClassName} pointer-events-none glow-target`}
                       aria-hidden
                     />
                     <div

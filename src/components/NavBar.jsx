@@ -9,20 +9,21 @@ const NavLink = ({ href, label }) => (
   </a>
 )
 
+const base = import.meta.env.BASE_URL || '/'
+
 const NavBar = ({ sections }) => {
   const [mobileOpen, setMobileOpen] = useState(false)
 
   return (
     <header className="sticky top-0 z-30 backdrop-blur-md bg-slate-950/70 border-b border-slate-800/70">
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
-        <div className="flex items-center gap-2">
-          <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center shadow-lg shadow-sky-500/30">
-            <span className="text-xs font-extrabold tracking-tight leading-none">
-              LED
-              <br />
-              WALL
-            </span>
-          </div>
+        <div className="flex items-center gap-3">
+          <img
+            src={`${base}images/cc-logo_fekvo.png`}
+            alt="CinemaCenter"
+            className="h-10 md:h-12 w-auto object-contain"
+            loading="lazy"
+          />
           <div className="flex flex-col leading-tight">
             <span className="text-lg md:text-xl font-bold tracking-tight">
               LED-Fal Center
@@ -67,40 +68,42 @@ const NavBar = ({ sections }) => {
         </div>
       </div>
 
-      {mobileOpen && (
-        <div className="md:hidden border-t border-slate-800/70 bg-slate-950/95">
-          <nav className="max-w-6xl mx-auto px-4 py-3 flex flex-col gap-2 text-sm">
-            <a
-              href={`#${sections.bemutatkozas}`}
-              onClick={() => setMobileOpen(false)}
-              className="py-1.5 text-slate-100/90 hover:text-white"
-            >
-              Bemutatkozás
-            </a>
-            <a
-              href={`#${sections.termekek}`}
-              onClick={() => setMobileOpen(false)}
-              className="py-1.5 text-slate-100/90 hover:text-white"
-            >
-              Termékek
-            </a>
-            <a
-              href={`#${sections.elonyok}`}
-              onClick={() => setMobileOpen(false)}
-              className="py-1.5 text-slate-100/90 hover:text-white"
-            >
-              Megoldásaink
-            </a>
-            <a
-              href={`#${sections.kapcsolat}`}
-              onClick={() => setMobileOpen(false)}
-              className="py-1.5 text-slate-100/90 hover:text-white"
-            >
-              Kapcsolat
-            </a>
-          </nav>
-        </div>
-      )}
+      <div
+        className={`md:hidden border-t border-slate-800/70 bg-slate-950/95 overflow-hidden transition-all duration-300 ease-out ${
+          mobileOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
+        }`}
+      >
+        <nav className="max-w-6xl mx-auto px-4 py-3 flex flex-col gap-2 text-sm">
+          <a
+            href={`#${sections.bemutatkozas}`}
+            onClick={() => setMobileOpen(false)}
+            className="py-1.5 text-slate-100/90 hover:text-white"
+          >
+            Bemutatkozás
+          </a>
+          <a
+            href={`#${sections.termekek}`}
+            onClick={() => setMobileOpen(false)}
+            className="py-1.5 text-slate-100/90 hover:text-white"
+          >
+            Termékek
+          </a>
+          <a
+            href={`#${sections.elonyok}`}
+            onClick={() => setMobileOpen(false)}
+            className="py-1.5 text-slate-100/90 hover:text-white"
+          >
+            Megoldásaink
+          </a>
+          <a
+            href={`#${sections.kapcsolat}`}
+            onClick={() => setMobileOpen(false)}
+            className="py-1.5 text-slate-100/90 hover:text-white"
+          >
+            Kapcsolat
+          </a>
+        </nav>
+      </div>
     </header>
   )
 }

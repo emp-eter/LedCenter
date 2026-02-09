@@ -6,6 +6,7 @@ import Products from './components/Products'
 import Advantages from './components/Advantages'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import { useEffect } from 'react'
 
 const sections = {
   bemutatkozas: 'bemutatkozas',
@@ -15,6 +16,28 @@ const sections = {
 }
 
 function App() {
+  useEffect(() => {
+    const targets = Array.from(document.querySelectorAll('.glow-target'))
+    if (!targets.length) return
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          const el = entry.target
+          if (entry.isIntersecting) {
+            el.classList.add('glow-active')
+          } else {
+            el.classList.remove('glow-active')
+          }
+        })
+      },
+      { threshold: 0.35 }
+    )
+
+    targets.forEach(t => observer.observe(t))
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <div className="min-h-screen bg-slate-950 text-slate-50 font-sans">
       <NavBar sections={sections} />
