@@ -1,4 +1,15 @@
-﻿const base = import.meta.env.BASE_URL || '/'
+import { motion } from 'framer-motion'
+
+const base = import.meta.env.BASE_URL || '/'
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 22 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: 'spring', stiffness: 280, damping: 22 },
+  },
+}
 
 const productSections = [
   {
@@ -15,7 +26,7 @@ const productSections = [
     title: 'Kültéri LED kijelzők',
     description:
       'A közlekedési termináloktól a hirdetőtáblákig kültéri kereskedelmi LED kijelzőink elég erőteljesek és látványosak ahhoz, hogy minden márka üzenetét jól láthatóvá tegyék.',
-    image: `${base}images/outdoor.webp`,
+    image: `${base}images/outdoor.png`,
     alt: 'Kültéri LED kijelző',
     glowClass: 'bg-emerald-400/30',
     shadow: '0 0 70px 22px rgba(52,211,153,0.28)',
@@ -55,9 +66,16 @@ const productSections = [
 ]
 
 const Products = ({ id }) => (
-  <section id={id} className="bg-slate-950 border-t border-slate-900/80">
-    <div className="max-w-6xl mx-auto px-4 py-10 md:py-14">
-      <div className="max-w-3xl mb-8 md:mb-10">
+  <section id={id} className="relative bg-slate-950 border-t border-slate-900/80 scroll-mt-24 md:scroll-mt-28 dot-grid">
+    <div className="pointer-events-none absolute top-1/2 -left-32 h-80 w-80 rounded-full bg-indigo-500/8 blur-3xl" aria-hidden />
+    <div className="max-w-5xl mx-auto px-4 py-10 md:py-14">
+      <motion.div
+        className="mb-8 md:mb-10"
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.5 }}
+      >
         <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-3">
           Széles termékválaszték minden igényre
         </h2>
@@ -65,7 +83,7 @@ const Products = ({ id }) => (
           Széles választékban kínálunk LED kijelzőket, amelyek kivételes képet és kiváló termékminőséget biztosítanak,
           hogy vállalkozása új szintre emelhesse termékeit vagy szolgáltatásait.
         </p>
-      </div>
+      </motion.div>
 
       <div className="grid gap-8 md:gap-10">
         {productSections.map(product => {
@@ -80,15 +98,17 @@ const Products = ({ id }) => (
           const ringClass = noDarkFrame ? '' : 'ring-1 ring-slate-800/60'
           const bgClass = noDarkFrame ? 'bg-transparent' : 'bg-slate-950/50 backdrop-blur-md'
           const boxShadow = noDarkFrame ? 'none' : product.shadow
-          const glowBlend =
-            noDarkFrame ? 'mix-blend-screen' : 'mix-blend-screen'
-          const glowZ = noDarkFrame ? 'z-0' : '-z-10'
-          const glowClassName = `${product.glowClass} ${glowBlend} ${glowZ} glow-layer`
+          const glowZ = 'z-0'
+          const glowClassName = `${product.glowClass} ${glowZ} glow-layer`
 
           return (
-            <div
+            <motion.div
               key={product.title}
               className={`grid ${gridTemplate} gap-7 md:gap-10 items-center`}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.12 }}
             >
               <div className={`space-y-3 ${textOrder}`}>
                 <h3 className="text-xl md:text-2xl font-semibold">{product.title}</h3>
@@ -96,11 +116,11 @@ const Products = ({ id }) => (
                   {product.description}
                 </p>
               </div>
-              <div className={`relative ${imageOrder}`}>
+              <div className={`relative group ${imageOrder}`}>
                 {product.image ? (
                   <>
                     <div
-                      className={`absolute -inset-12 rounded-3xl ${glowClassName} pointer-events-none glow-target`}
+                      className={`absolute -inset-12 rounded-3xl ${glowClassName} pointer-events-none`}
                       aria-hidden
                     />
                     <div
@@ -111,7 +131,7 @@ const Products = ({ id }) => (
                       <img
                         src={product.image}
                         alt={product.alt}
-                        className={`w-full h-full ${imageFitClass}`}
+                        className={`w-full h-full ${imageFitClass} transition-transform duration-500 ease-out group-hover:scale-105`}
                         loading="lazy"
                       />
                     </div>
@@ -122,7 +142,7 @@ const Products = ({ id }) => (
                   </div>
                 )}
               </div>
-            </div>
+            </motion.div>
           )
         })}
       </div>
@@ -131,4 +151,3 @@ const Products = ({ id }) => (
 )
 
 export default Products
-
